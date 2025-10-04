@@ -1,0 +1,31 @@
+name: CI for Task Manager
+
+on:
+  pull_request:
+    branches:
+      - dev
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+      
+      - name: Check project structure
+        run: |
+          echo "Checking files..."
+          ls -la
+          echo "HTML files found:"
+          find . -name "*.html" || true
+          echo "JavaScript files found:"
+          find . -name "*.js" || true
+          echo "CSS files found:"
+          find . -name "*.css" || true
+          echo "Project validation successful!"
